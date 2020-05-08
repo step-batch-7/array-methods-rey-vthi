@@ -18,3 +18,19 @@ Array *map(Array *src, Mapper mapper)
   }
   return result;
 }
+
+Array *filter(Array *list, Predicate predicate)
+{
+  Array *result = create_dynamic_array(list->length);
+  ITERATE(0,list->length)
+  {
+    if((*predicate)(list->array[index]))
+    {
+      result->array[result->length] = list->array[index];
+      result->length++;
+    }
+  }
+  Array *filtered_list = copy_list(result);
+  free(result);
+  return filtered_list;
+}
