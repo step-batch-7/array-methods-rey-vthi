@@ -1,5 +1,8 @@
 #ifndef __ARRAY_H
 #define __ARRAY_H
+
+#define ITERATE(start, end) for (int index = start; index < end; index++)
+
 typedef enum
 {
   False,
