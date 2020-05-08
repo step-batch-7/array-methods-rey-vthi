@@ -1,4 +1,5 @@
 #include "array.h"
+#include <stdlib.h>
 
 Array *create_dynamic_array(int length)
 {
