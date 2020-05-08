@@ -19,14 +19,14 @@ Array *map(Array *src, Mapper mapper)
   return result;
 }
 
-Array *filter(Array *list, Predicate predicate)
+Array *filter(Array *src, Predicate predicate)
 {
-  Array *result = create_dynamic_array(list->length);
-  ITERATE(0,list->length)
+  Array *result = create_dynamic_array(src->length);
+  ITERATE(0,src->length)
   {
-    if((*predicate)(list->array[index]))
+    if((*predicate)(src->array[index]))
     {
-      result->array[result->length] = list->array[index];
+      result->array[result->length] = src->array[index];
       result->length++;
     }
   }
@@ -42,4 +42,15 @@ int reduce(Array *src, int init, Reducer reducer)
     init = (*reducer)(init, src->array[index]);
   }
   return init;
+}
+
+Array *copy_list(Array *src)
+{
+  Array *copy_of_list = create_dynamic_array(src->length);
+  ITERATE(0,src->length)
+  {
+    copy_of_list->array[index] = src->array[index];
+    copy_of_list->length++;
+  }
+  return copy_of_list;
 }
