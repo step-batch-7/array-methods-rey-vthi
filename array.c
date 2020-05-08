@@ -34,3 +34,12 @@ Array *filter(Array *list, Predicate predicate)
   free(result);
   return filtered_list;
 }
+
+int reduce(Array *src, int init, Reducer reducer)
+{
+   ITERATE(0,src->length)
+  {
+    init = (*reducer)(init, src->array[index]);
+  }
+  return init;
+}
