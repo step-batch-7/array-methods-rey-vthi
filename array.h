@@ -19,10 +19,15 @@ typedef struct
   int length;
 } Array;
 
-Array *map(Array *src, Mapper mapper);
-Array *filter(Array *src, Predicate predicate);
-int reduce(Array *src, int init, Reducer reducer);
+typedef Array *Array_ptr;
+typedef int *Int_ptr;
 
-Array *copy_list(Array *src);
+Array_ptr map(Array_ptr src, Mapper mapper);
+Array_ptr filter(Array_ptr src, Predicate predicate);
+int reduce(Array_ptr src, int init, Reducer reducer);
+
+Array_ptr copy_list(Array_ptr src);
+
+Array_ptr create_dynamic_array(int length);
 
 #endif

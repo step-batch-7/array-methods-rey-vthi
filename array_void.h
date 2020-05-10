@@ -20,4 +20,8 @@ ArrayVoid_ptr map_void(ArrayVoid_ptr src, MapperVoid mapper);
 ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predicate);
 Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer);
 
+ArrayVoid_ptr copy_void_list(ArrayVoid_ptr src);
+
+ArrayVoid_ptr create_ArrayVoid(int length);
+
 #endif

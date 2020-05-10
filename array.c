@@ -1,17 +1,17 @@
 #include "array.h"
 #include <stdlib.h>
 
-Array *create_dynamic_array(int length)
+Array_ptr create_dynamic_array(int length)
 {
-  Array *dynamic_array = malloc(sizeof(Array));
+  Array_ptr dynamic_array = malloc(sizeof(Array));
   dynamic_array->array = malloc(length * sizeof(int *));
   dynamic_array->length = 0;
   return dynamic_array;
 }
 
-Array *map(Array *src, Mapper mapper)
+Array_ptr map(Array_ptr src, Mapper mapper)
 {
-  Array *result = create_dynamic_array(src->length);
+  Array_ptr result = create_dynamic_array(src->length);
   ITERATE(0,src->length)
   {
     result->array[index] = (*mapper)(src->array[index]);
@@ -20,9 +20,9 @@ Array *map(Array *src, Mapper mapper)
   return result;
 }
 
-Array *filter(Array *src, Predicate predicate)
+Array_ptr filter(Array_ptr src, Predicate predicate)
 {
-  Array *result = create_dynamic_array(src->length);
+  Array_ptr result = create_dynamic_array(src->length);
   ITERATE(0,src->length)
   {
     if((*predicate)(src->array[index]))
@@ -31,12 +31,12 @@ Array *filter(Array *src, Predicate predicate)
       result->length++;
     }
   }
-  Array *filtered_list = copy_list(result);
+  Array_ptr filtered_list = copy_list(result);
   free(result);
   return filtered_list;
 }
 
-int reduce(Array *src, int init, Reducer reducer)
+int reduce(Array_ptr src, int init, Reducer reducer)
 {
    ITERATE(0,src->length)
   {
@@ -45,9 +45,9 @@ int reduce(Array *src, int init, Reducer reducer)
   return init;
 }
 
-Array *copy_list(Array *src)
+Array_ptr copy_list(Array_ptr src)
 {
-  Array *copy_of_list = create_dynamic_array(src->length);
+  Array_ptr copy_of_list = create_dynamic_array(src->length);
   ITERATE(0,src->length)
   {
     copy_of_list->array[index] = src->array[index];
