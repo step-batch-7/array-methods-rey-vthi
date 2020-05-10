@@ -3,6 +3,8 @@
 
 #define ITERATE(start, end) for (int index = start; index < end; index++)
 
+typedef int *Int_ptr;
+
 typedef enum
 {
   False,
@@ -15,12 +17,11 @@ typedef int (*Reducer)(int, int);
 
 typedef struct
 {
-  int *array;
+  Int_ptr array;
   int length;
 } Array;
 
 typedef Array *Array_ptr;
-typedef int *Int_ptr;
 
 Array_ptr map(Array_ptr src, Mapper mapper);
 Array_ptr filter(Array_ptr src, Predicate predicate);

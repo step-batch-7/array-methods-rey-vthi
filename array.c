@@ -4,7 +4,7 @@
 Array_ptr create_dynamic_array(int length)
 {
   Array_ptr dynamic_array = malloc(sizeof(Array));
-  dynamic_array->array = malloc(length * sizeof(int *));
+  dynamic_array->array = malloc(length * sizeof(Int_ptr));
   dynamic_array->length = 0;
   return dynamic_array;
 }
